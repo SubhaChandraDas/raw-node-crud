@@ -8,6 +8,7 @@ const config = require('./config');
 
 // const fileOperations = require('./lib/fileOperations');
 const handlers = require('./lib/handlers');
+const helpers = require('./lib/helpers');
 
 // fileOperations.create('testDir', 'newFile', { somthing: 'not important' }, function(error) {
 //     console.log('Error occurred: ', error)
@@ -47,11 +48,12 @@ const serverCommonFunction = function(req, res) {
 
         const chosenHandler = typeof(router[trimmedPath]) !== 'undefined' ? router[trimmedPath] : handlers.notFound;
 
+
         const data = {
             trimmedPath,
-            method: httpMethod,
+            method: httpMethod.toLowerCase(),
             headers: req.headers,
-            payload: buffer,
+            payload: helpers.parseJsonToObject(buffer),
             queryStringObjec: parsedUrl.query
         }
 
@@ -93,5 +95,6 @@ httpsServer.listen(config.httpsport, function() {
 //Defining the router
 
 let router = {
-    'ping': handlers.ping
+    'ping': handlers.ping,
+    'users': handlers.users
 };
