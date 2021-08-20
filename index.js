@@ -8,9 +8,9 @@ const config = require('./config');
 
 const _data = require('./lib/data')
 
-// _data.create('testDir', 'newFile', { somthing: 'not important' }, function(error) {
-//     console.log('Error occurred: ', error)
-// })
+_data.create('testDir', 'newFile', { somthing: 'not important' }, function(error) {
+    console.log('Error occurred: ', error)
+})
 
 
 const certificateConf = {
