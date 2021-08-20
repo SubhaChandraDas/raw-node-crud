@@ -54,7 +54,7 @@ const serverCommonFunction = function(req, res) {
             method: httpMethod.toLowerCase(),
             headers: req.headers,
             payload: helpers.parseJsonToObject(buffer),
-            queryStringObjec: parsedUrl.query
+            queryStringObject: parsedUrl.query
         }
 
         //route the request to the handler specified in router
