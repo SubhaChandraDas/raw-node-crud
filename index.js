@@ -6,11 +6,12 @@ const fs = require('fs');
 const { StringDecoder } = require('string_decoder');
 const config = require('./config');
 
-const _data = require('./lib/data')
+// const fileOperations = require('./lib/fileOperations');
+const handlers = require('./lib/handlers');
 
-_data.create('testDir', 'newFile', { somthing: 'not important' }, function(error) {
-    console.log('Error occurred: ', error)
-})
+// fileOperations.create('testDir', 'newFile', { somthing: 'not important' }, function(error) {
+//     console.log('Error occurred: ', error)
+// })
 
 
 const certificateConf = {
@@ -88,20 +89,9 @@ httpsServer.listen(config.httpsport, function() {
     console.log(`Server is listening on Port ${config.httpsport}`)
 })
 
-//defining handlers
-let handlers = {}
-
-handlers.sample = function(error, callBack) {
-    callBack(406, { 'name': 'Sample handler' })
-}
-
-//Not found Handler
-handlers.notFound = function(data, callBack) {
-    callBack(404)
-}
 
 //Defining the router
 
 let router = {
-    'sample': handlers.sample
+    'ping': handlers.ping
 };
